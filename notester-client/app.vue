@@ -1,11 +1,7 @@
 <template>
-    <div class="app">
-        <the-menu />
-
-        <notes-list />
-
-        <single-note />
-    </div>
+    <NuxtLayout name="default">
+        <NuxtPage />
+    </NuxtLayout>
 </template>
 
 <style>
