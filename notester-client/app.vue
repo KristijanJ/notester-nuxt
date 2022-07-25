@@ -22,7 +22,7 @@ body {
   /* font-family: 'Source Sans Pro', sans-serif; */
   /* font-family: 'Oswald', sans-serif; */
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 ul {
