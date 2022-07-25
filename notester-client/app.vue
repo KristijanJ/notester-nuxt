@@ -324,6 +324,10 @@ ul {
   align-items: center;
 }
 
+.note-container .note-content {
+  padding: 8px 16px;
+}
+
 .ql-toolbar.ql-snow {
   border: none;
   border-bottom: 1px solid #ccc;

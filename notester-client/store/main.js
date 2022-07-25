@@ -26,11 +26,7 @@ export const useMainStore = defineStore({
                     content: 'Cum, accusantium minus neque, officia dolore veritatis aspernatur quaerat magni quis quae vitae ipsum officiis. Officiis laudantium itaque impedit, ipsa alias quo labore explicabo dolores provident laboriosam, reiciendis dolor quod aspernatur et autem temporibus. Eveniet ut unde explicabo, veniam neque nostrum minus.'
                 }
             ],
-            selectedNote: {
-                id: 0,
-                title: 'Study Javascript',
-                content: 'Assumenda commodi accusantium inventore nobis autem earum officiis quod corrupti, vel nisi?'
-            }
+            selectedNote: null
         }
     }
 })
