@@ -14,13 +14,13 @@
 
         <nav class="note-filters-list">
             <ul>
-                <li>
+                <li class="active">
                     <div class="note-filter-icon">
                         <clipboard-svg />
                     </div>
                     <div class="note-filter-text">All Notes</div>
                 </li>
-                <li class="active">
+                <li>
                     <div class="note-filter-icon">
                         <star-svg />
                     </div>
@@ -47,9 +47,7 @@
                     </div>
                     <div class="note-tag-text">
                         Inbox
-                        <i
-                            class="fas fa-ellipsis-h note-tag-text-options"
-                        ></i>
+                        <i class="fas fa-ellipsis-h note-tag-text-options"></i>
                     </div>
                 </li>
                 <li>

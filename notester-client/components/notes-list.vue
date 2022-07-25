@@ -10,6 +10,7 @@
                 :key="note.id"
                 :title="note.title"
                 :content="note.content"
+                :class="{ 'active': mainStore.selectedNote.id === note.id }"
             />
         </div>
     </div>
