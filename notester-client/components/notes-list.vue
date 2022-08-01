@@ -7,7 +7,10 @@
 
             <template v-if="mainStore.selectedCategory">
                 <template v-for="note in mainStore.selectedCategory.notes" :key="note.id">
-                    <NuxtLink :to="`/category/${mainStore.selectedCategory.id}/note/${note.id}`">
+                    <NuxtLink
+                        :to="`/category/${mainStore.selectedCategory.id}/note/${note.id}`"
+                        v-if="displayNoteInUI(note)"
+                    >
                         <single-note-card
                             :note="note"
                             :class="{ 'active': mainStore.selectedNote ? mainStore.selectedNote.id === note.id : false }"
@@ -48,6 +51,12 @@ export default {
             }
 
             this.mainStore.$patch({ categories: newCategories })
+        },
+        displayNoteInUI (note) {
+            if (this.mainStore.selectedNoteFilter.id === 'starred') {
+                return note.starred;
+            }
+            return true;
         }
     }
 }

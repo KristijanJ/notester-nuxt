@@ -18,7 +18,7 @@
                     v-for="noteFilter in noteFilters"
                     :key="noteFilter.id"
                     :class="{ 'active': mainStore.selectedNoteFilter.id === noteFilter.id }"
-                    @click="mainStore.$patch({ selectedNoteFilter: noteFilter })"
+                    @click="handleNoteFilterClick(noteFilter)"
                 >
                     <div class="note-filter-icon">
                         <component :is="noteFilter.iconComponent" />
@@ -93,6 +93,9 @@ export default {
             }
 
             return `/category/${category.id}`;
+        },
+        handleNoteFilterClick (noteFilter) {
+            this.mainStore.$patch({ selectedNoteFilter: noteFilter });
         }
     }
 }
