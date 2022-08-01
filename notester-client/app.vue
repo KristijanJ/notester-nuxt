@@ -55,6 +55,10 @@ ul {
   align-items: stretch;
 }
 
+.note-list a {
+  text-decoration: none;
+}
+
 .chosen-category {
   display: flex;
   background: #fff;
@@ -72,7 +76,7 @@ ul {
 
 .note-card {
   background: #fff;
-  display: inline-block;
+  /* display: inline-block; */
   margin: 3px 4px;
   padding: 8px 8px 11px 8px;
   border-radius: 3px;
@@ -82,7 +86,12 @@ ul {
   cursor: pointer;
 }
 
-.note-card h3 {
+.note-card .note-card-title {
+  display: flex;
+  align-items: center;
+}
+
+.note-card .note-card-title h3 {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -90,7 +99,11 @@ ul {
   padding-bottom: 2px;
   font-weight: 400;
   font-size: 14px;
+}
 
+.note-card .note-card-title svg {
+  width: 18px;
+  height: 18px;
 }
 
 .note-card p {

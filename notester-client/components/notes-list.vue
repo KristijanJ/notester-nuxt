@@ -11,6 +11,7 @@
                         <single-note-card
                             :title="note.title"
                             :content="note.content"
+                            :is-starred="note.starred"
                             :class="{ 'active': mainStore.selectedNote ? mainStore.selectedNote.id === note.id : false }"
                         />
                     </NuxtLink>
