@@ -9,10 +9,5 @@ export const useMainStore = defineStore({
             selectedCategory: null,
             selectedNote: null
         }
-    },
-    getters: {
-        getSelectedNote () {
-            console.log(this)
-        }
     }
 })

@@ -83,9 +83,6 @@ export default {
     computed: {
         ...mapStores(useMainStore)
     },
-    mounted () {
-        console.log(this.mainStore.categories);
-    },
     methods: {
         getCategoryActiveClass (category) {
             if (!this.mainStore.selectedCategory) {
