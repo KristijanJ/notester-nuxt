@@ -14,23 +14,16 @@
 
         <nav class="note-filters-list">
             <ul>
-                <li class="active">
+                <li
+                    v-for="noteFilter in noteFilters"
+                    :key="noteFilter.id"
+                    :class="{ 'active': mainStore.selectedNoteFilter.id === noteFilter.id }"
+                    @click="mainStore.$patch({ selectedNoteFilter: noteFilter })"
+                >
                     <div class="note-filter-icon">
-                        <clipboard-svg />
+                        <component :is="noteFilter.iconComponent" />
                     </div>
-                    <div class="note-filter-text">All Notes</div>
-                </li>
-                <li>
-                    <div class="note-filter-icon">
-                        <star-svg />
-                    </div>
-                    <div class="note-filter-text">Starred</div>
-                </li>
-                <li>
-                    <div class="note-filter-icon">
-                        <trash-svg />
-                    </div>
-                    <div class="note-filter-text">Deleted</div>
+                    <div class="note-filter-text">{{ noteFilter.title }}</div>
                 </li>
             </ul>
         </nav>
@@ -68,6 +61,7 @@
 <script>
 import { mapStores } from 'pinia';
 import { useMainStore } from '../store/main';
+import { getNoteFilters } from '../services/utils'
 
 import clipboardSvg from '../assets/svg-components/clipboardSvg.vue';
 import starSvg from '../assets/svg-components/starSvg.vue';
@@ -81,7 +75,10 @@ export default {
         trashSvg
     },
     computed: {
-        ...mapStores(useMainStore)
+        ...mapStores(useMainStore),
+        noteFilters () {
+            return getNoteFilters();
+        }
     },
     methods: {
         getCategoryActiveClass (category) {

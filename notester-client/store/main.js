@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { getNoteFilters } from '../services/utils';
 import { getCategories } from '../services/dummyData';
 
 export const useMainStore = defineStore({
@@ -7,7 +8,8 @@ export const useMainStore = defineStore({
         return {
             categories: getCategories(),
             selectedCategory: null,
-            selectedNote: null
+            selectedNote: null,
+            selectedNoteFilter: getNoteFilters()[0]
         }
     }
 })
