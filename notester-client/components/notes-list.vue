@@ -32,6 +32,9 @@ export default {
     },
     computed: {
         ...mapStores(useMainStore)
+    },
+    mounted () {
+        console.log(this.mainStore.getSelectedNote)
     }
 }
 </script>
