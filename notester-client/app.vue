@@ -133,8 +133,16 @@ ul {
   color: #949d9f;
 }
 
+.note-filters-list ul li a {
+  color: #949d9f;
+}
+
 .note-filters-list ul li:hover {
   border-left: 3px solid #d8e5e7;
+  color: #d8e5e7;
+}
+
+.note-filters-list ul li:hover a {
   color: #d8e5e7;
 }
 
@@ -189,7 +197,8 @@ ul {
   cursor: pointer;
 }
 
-.note-tags-list ul li.active .note-tag-text, .note-tags-list ul li:hover .note-tag-text {
+.note-tags-list ul li.active .note-tag-text,
+.note-tags-list ul li:hover .note-tag-text {
   color: #d8e5e7;
   font-weight: 300;
 }
@@ -209,6 +218,8 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  color: #949d9f;
+  text-decoration: none;
 }
 
 .note-tag-text-options {
@@ -294,6 +305,7 @@ ul {
 .note-container {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .note-details {
@@ -326,6 +338,13 @@ ul {
 
 .note-container .note-content {
   padding: 8px 16px;
+}
+
+.note-container > .empty-note {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .ql-toolbar.ql-snow {

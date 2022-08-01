@@ -41,36 +41,17 @@
                 <i class="fas fa-angle-down"></i>
             </div>
             <ul>
-                <li class="active">
+                <li
+                    v-for="category in mainStore.categories"
+                    :key="category.id"
+                    :class="getCategoryActiveClass(category)"
+                >
                     <div class="note-tag-icon">
                         <div class="green"></div>
                     </div>
-                    <div class="note-tag-text">
-                        Inbox
-                        <i class="fas fa-ellipsis-h note-tag-text-options"></i>
-                    </div>
-                </li>
-                <li>
-                    <div class="note-tag-icon">
-                        <div class="blue"></div>
-                    </div>
-                    <div class="note-tag-text">
-                        Personal
-                        <i
-                            class="fas fa-ellipsis-h note-tag-text-options"
-                        ></i>
-                    </div>
-                </li>
-                <li>
-                    <div class="note-tag-icon">
-                        <div class="red"></div>
-                    </div>
-                    <div class="note-tag-text">
-                        Work
-                        <i
-                            class="fas fa-ellipsis-h note-tag-text-options"
-                        ></i>
-                    </div>
+                    <NuxtLink :to="getCategoryRoute(category)" class="note-tag-text">
+                        {{ category.title }}
+                    </NuxtLink>
                 </li>
                 <li>
                     <div class="note-tag-text">+ Add new</div>
@@ -85,6 +66,9 @@
 </template>
 
 <script>
+import { mapStores } from 'pinia';
+import { useMainStore } from '../store/main';
+
 import clipboardSvg from '../assets/svg-components/clipboardSvg.vue';
 import starSvg from '../assets/svg-components/starSvg.vue';
 import trashSvg from '../assets/svg-components/trashSvg.vue';
@@ -95,6 +79,27 @@ export default {
         starSvg,
         clipboardSvg,
         trashSvg
+    },
+    computed: {
+        ...mapStores(useMainStore)
+    },
+    mounted () {
+        console.log(this.mainStore.categories);
+    },
+    methods: {
+        getCategoryActiveClass (category) {
+            if (!this.mainStore.selectedCategory) {
+                return '';
+            }
+            return this.mainStore.selectedCategory.id === category.id ? 'active' : '';
+        },
+        getCategoryRoute (category) {
+            if (category.notes.length) {
+                return `/category/${category.id}/note/${category.notes[0].id}`;
+            }
+
+            return `/category/${category.id}`;
+        }
     }
 }
 </script>

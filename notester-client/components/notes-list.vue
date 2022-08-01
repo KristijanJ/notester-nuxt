@@ -5,14 +5,16 @@
                 <p>Inbox</p>
             </div>
 
-            <template v-for="note in mainStore.notesList" :key="note.id">
-                <NuxtLink :to="`/note/${note.id}`">
-                    <single-note-card
-                        :title="note.title"
-                        :content="note.content"
-                        :class="{ 'active': mainStore.selectedNote ? mainStore.selectedNote.id === note.id : false }"
-                    />
-                </NuxtLink>
+            <template v-if="mainStore.selectedCategory">
+                <template v-for="note in mainStore.selectedCategory.notes" :key="note.id">
+                    <NuxtLink :to="`/category/${mainStore.selectedCategory.id}/note/${note.id}`">
+                        <single-note-card
+                            :title="note.title"
+                            :content="note.content"
+                            :class="{ 'active': mainStore.selectedNote ? mainStore.selectedNote.id === note.id : false }"
+                        />
+                    </NuxtLink>
+                </template>
             </template>
         </div>
     </div>
