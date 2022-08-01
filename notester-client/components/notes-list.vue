@@ -11,6 +11,7 @@
                         <single-note-card
                             :note="note"
                             :class="{ 'active': mainStore.selectedNote ? mainStore.selectedNote.id === note.id : false }"
+                            @star-note="handleStarNote(note)"
                         />
                     </NuxtLink>
                 </template>
@@ -31,6 +32,23 @@ export default {
     },
     computed: {
         ...mapStores(useMainStore)
+    },
+    methods: {
+        handleStarNote (note) {
+            const newCategories = [...this.mainStore.categories];
+            for (let i = 0; i < newCategories.length; i++) {
+                if (newCategories[i].id === this.mainStore.selectedCategory.id) {
+                    for (let j = 0; j < newCategories[i].notes.length; j++) {
+                        if (newCategories[i].notes[j].id === note.id) {
+                            newCategories[i].notes[j].starred = !newCategories[i].notes[j].starred;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            this.mainStore.$patch({ categories: newCategories })
+        }
     }
 }
 </script>
