@@ -9,9 +9,7 @@
                 <template v-for="note in mainStore.selectedCategory.notes" :key="note.id">
                     <NuxtLink :to="`/category/${mainStore.selectedCategory.id}/note/${note.id}`">
                         <single-note-card
-                            :title="note.title"
-                            :content="note.content"
-                            :is-starred="note.starred"
+                            :note="note"
                             :class="{ 'active': mainStore.selectedNote ? mainStore.selectedNote.id === note.id : false }"
                         />
                     </NuxtLink>

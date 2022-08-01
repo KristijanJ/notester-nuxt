@@ -1,11 +1,11 @@
 <template>
     <div class="note-card">
         <div class="note-card-title">
-            <h3>{{ title }}</h3>
-            <star-svg v-if="isStarred" fill="#ffd400" />
+            <h3>{{ note.title }}</h3>
+            <star-svg v-if="note.starred" fill="#ffd400" />
         </div>
         <p>
-            {{ content }}
+            {{ note.content }}
         </p>
     </div>
 </template>
@@ -19,17 +19,9 @@ export default {
     },
     name: 'SingleNoteCard',
     props: {
-        title: {
-            type: String,
-            default: ''
-        },
-        content: {
-            type: String,
-            default: ''
-        },
-        isStarred: {
-            type: Boolean,
-            default: false
+        note: {
+            type: Object,
+            required: true
         }
     }
 }
