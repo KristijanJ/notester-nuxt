@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const noteCategory = require('../noteCategory/index');
 
 const Note = mongoose.model(
     'note',
@@ -34,6 +35,9 @@ const addNote = async (req, res) => {
     try {
         const note = new Note({ ...req.body });
         await note.save();
+
+        await noteCategory.NoteCategory.updateOne({ _id: '62ee7a728a466db404301d17' }, { $push: { notes: note._id } });
+
         res.status(201).send('created');
     } catch (error) {
         console.log(error);
