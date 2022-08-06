@@ -43,6 +43,7 @@ const addNoteCategory = (req, res) => {
 };
 
 module.exports = {
+    NoteCategory,
     getNoteCategories,
     getNoteCategory,
     addNoteCategory

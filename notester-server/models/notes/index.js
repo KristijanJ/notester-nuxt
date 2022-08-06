@@ -44,6 +44,7 @@ const addNote = (req, res) => {
 };
 
 module.exports = {
+    Note,
     addNote,
     getNotes,
     getNote
