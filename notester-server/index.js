@@ -1,9 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 require('dotenv').config();
+const notes = require('./models/notes/index');
 
 const app = express();
-const port = 3030;
+const port = 3031;
 const mongoString = process.env.DATABASE_URL;
 
 mongoose.connect(mongoString);
@@ -16,9 +19,15 @@ database.once('connected', () => {
     console.log('Database Connected');
 });
 
+app.use(cors());
+app.use(bodyParser.json());
+
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
+
+app.get('/api/v1/notes', notes.getNotes);
+app.post('/api/v1/notes', notes.addNote);
 
 app.get('/getAll', async (req, res) => {
     try {
