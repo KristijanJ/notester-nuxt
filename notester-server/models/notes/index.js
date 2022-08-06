@@ -22,30 +22,29 @@ const getNotes = (req, res) => {
         });
 };
 
-const addNote = (req, res) => {
-    addNoteService({ ...req.body })
-        .then(() => {
-            res.status(201).send('created');
-        })
-        .catch((err) => {
+const getNote = (req, res) => {
+    Note.findOne({ _id: req.params.id }, (err, data) => {
+        if (err) {
             console.log(err);
-            res.status(500).send('internal server error');
-        });
+            res.status(500).send("internal server error");
+        }
+        res.status(200).send(data);
+    })
 };
 
-const addNoteService = (data) => {
-    return new Promise((success, fail) => {
-        let note = new Note(data);
-        note.save((err) => {
-            if (err) {
-                return fail(err);
-            }
-            return success();
-        });
+const addNote = (req, res) => {
+    let note = new Note({ ...req.body });
+    note.save((err) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('internal server error');
+        }
+        res.status(201).send('created');
     });
 };
 
 module.exports = {
     addNote,
     getNotes,
+    getNote
 };

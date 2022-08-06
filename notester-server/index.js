@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/v1/notes', notes.getNotes);
 app.post('/api/v1/notes', notes.addNote);
+app.get('/api/v1/notes/:id', notes.getNote);
 
 app.get('/getAll', async (req, res) => {
     try {
