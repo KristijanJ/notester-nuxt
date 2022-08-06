@@ -6,7 +6,7 @@
             </div>
 
             <template v-if="mainStore.selectedCategory">
-                <template v-for="note in mainStore.selectedCategory.notes" :key="note._id">
+                <div v-for="note in mainStore.selectedCategory.notes" :key="note._id">
                     <NuxtLink
                         :to="`/category/${mainStore.selectedCategory._id}/note/${note._id}`"
                         v-if="displayNoteInUI(note)"
@@ -17,7 +17,7 @@
                             @star-note="handleStarNote(note)"
                         />
                     </NuxtLink>
-                </template>
+                </div>
             </template>
         </div>
     </div>
