@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 app.get('/api/v1/notes', notes.getNotes);
 app.post('/api/v1/notes', notes.addNote);
 app.get('/api/v1/notes/:id', notes.getNote);
+app.patch('/api/v1/notes/:id', notes.updateNote);
 
 app.get('/api/v1/note-categories', noteCategory.getNoteCategories);
 app.post('/api/v1/note-categories', noteCategory.addNoteCategory);

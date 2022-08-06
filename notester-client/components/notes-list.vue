@@ -37,20 +37,33 @@ export default {
         ...mapStores(useMainStore)
     },
     methods: {
-        handleStarNote (note) {
-            const newCategories = [...this.mainStore.categories];
-            for (let i = 0; i < newCategories.length; i++) {
-                if (newCategories[i].id === this.mainStore.selectedCategory._id) {
-                    for (let j = 0; j < newCategories[i].notes.length; j++) {
-                        if (newCategories[i].notes[j].id === note._id) {
-                            newCategories[i].notes[j].starred = !newCategories[i].notes[j].starred;
-                            break;
+        async handleStarNote (note) {
+            try {
+                const res = await fetch(`http://localhost:3031/api/v1/notes/${note._id}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify({ starred: !note.starred }),
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                });
+                if (!res.ok) {
+                    return;
+                }
+                const newCategories = [...this.mainStore.categories];
+                for (let i = 0; i < newCategories.length; i++) {
+                    if (newCategories[i]._id === this.mainStore.selectedCategory._id) {
+                        for (let j = 0; j < newCategories[i].notes.length; j++) {
+                            if (newCategories[i].notes[j]._id === note._id) {
+                                newCategories[i].notes[j].starred = !newCategories[i].notes[j].starred;
+                                break;
+                            }
                         }
                     }
                 }
+                this.mainStore.$patch({ categories: newCategories });
+            } catch (error) {
+                console.log(error);
             }
-
-            this.mainStore.$patch({ categories: newCategories })
         },
         displayNoteInUI (note) {
             if (this.mainStore.selectedNoteFilter.id === 'starred') {

@@ -45,9 +45,20 @@ const addNote = async (req, res) => {
     }
 };
 
+const updateNote = async (req, res) => {
+    try {
+        await Note.updateOne({ _id: req.params.id }, req.body);
+        res.status(200).send('note updated');
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('internal server error');
+    }
+}
+
 module.exports = {
     Note,
     addNote,
     getNotes,
-    getNote
+    getNote,
+    updateNote
 };
