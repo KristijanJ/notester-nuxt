@@ -36,7 +36,7 @@
             <ul>
                 <li
                     v-for="category in mainStore.categories"
-                    :key="category.id"
+                    :key="category._id"
                     :class="getCategoryActiveClass(category)"
                 >
                     <div class="note-tag-icon">
@@ -85,14 +85,14 @@ export default {
             if (!this.mainStore.selectedCategory) {
                 return '';
             }
-            return this.mainStore.selectedCategory.id === category.id ? 'active' : '';
+            return this.mainStore.selectedCategory._id === category._id ? 'active' : '';
         },
         getCategoryRoute (category) {
             if (category.notes.length) {
-                return `/category/${category.id}/note/${category.notes[0].id}`;
+                return `/category/${category._id}/note/${category.notes[0]._id}`;
             }
 
-            return `/category/${category.id}`;
+            return `/category/${category._id}`;
         },
         handleNoteFilterClick (noteFilter) {
             this.mainStore.$patch({ selectedNoteFilter: noteFilter });

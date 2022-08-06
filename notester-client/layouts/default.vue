@@ -4,7 +4,9 @@
 
         <notes-list />
 
-        <slot />
+        <slot>
+            <div class="note-container" />
+        </slot>
     </div>
 </template>
 

@@ -22,7 +22,7 @@ export default {
             });
             return;
         }
-        const selectedNote = this.mainStore.selectedCategory.notes.find(note => note.id == this.$route.params.id);
+        const selectedNote = this.mainStore.selectedCategory.notes.find(note => note._id == this.$route.params.id);
         this.mainStore.$patch({
             selectedNote: selectedNote || null
         });

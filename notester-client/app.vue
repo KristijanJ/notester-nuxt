@@ -1,8 +1,41 @@
 <template>
     <NuxtLayout name="default">
-        <NuxtPage />
+        <NuxtPage v-if="!loading" />
     </NuxtLayout>
 </template>
+
+<script>
+import { mapStores } from 'pinia';
+import { useMainStore } from './store/main';
+import { setSelectedNoteAndCategoryFromRoute } from './services/utils';
+
+export default {
+    data () {
+        return {
+            loading: true
+        }
+    },
+    computed: {
+        ...mapStores(useMainStore)
+    },
+    async mounted () {
+        try {
+            const res = await fetch('http://localhost:3031/api/v1/note-categories-with-notes');
+            const data = await res.json();
+
+            this.mainStore.$patch({
+                categories: data
+            });
+            
+            setSelectedNoteAndCategoryFromRoute(this.$route.params.categoryId, this.$route.params.id);
+
+            this.loading = false;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+</script>
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900&display=swap');

@@ -6,14 +6,14 @@
             </div>
 
             <template v-if="mainStore.selectedCategory">
-                <template v-for="note in mainStore.selectedCategory.notes" :key="note.id">
+                <template v-for="note in mainStore.selectedCategory.notes" :key="note._id">
                     <NuxtLink
-                        :to="`/category/${mainStore.selectedCategory.id}/note/${note.id}`"
+                        :to="`/category/${mainStore.selectedCategory._id}/note/${note._id}`"
                         v-if="displayNoteInUI(note)"
                     >
                         <single-note-card
                             :note="note"
-                            :class="{ 'active': mainStore.selectedNote ? mainStore.selectedNote.id === note.id : false }"
+                            :class="{ 'active': mainStore.selectedNote ? mainStore.selectedNote._id === note._id : false }"
                             @star-note="handleStarNote(note)"
                         />
                     </NuxtLink>
@@ -40,9 +40,9 @@ export default {
         handleStarNote (note) {
             const newCategories = [...this.mainStore.categories];
             for (let i = 0; i < newCategories.length; i++) {
-                if (newCategories[i].id === this.mainStore.selectedCategory.id) {
+                if (newCategories[i].id === this.mainStore.selectedCategory._id) {
                     for (let j = 0; j < newCategories[i].notes.length; j++) {
-                        if (newCategories[i].notes[j].id === note.id) {
+                        if (newCategories[i].notes[j].id === note._id) {
                             newCategories[i].notes[j].starred = !newCategories[i].notes[j].starred;
                             break;
                         }
