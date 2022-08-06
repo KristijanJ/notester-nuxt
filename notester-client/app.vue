@@ -18,10 +18,9 @@ export default {
     computed: {
         ...mapStores(useMainStore)
     },
-    async mounted () {
+    async created () {
         try {
-            const res = await fetch('http://localhost:3031/api/v1/note-categories-with-notes');
-            const data = await res.json();
+            const { data } = await useFetch('http://localhost:3031/api/v1/note-categories-with-notes');
 
             this.mainStore.$patch({
                 categories: data
