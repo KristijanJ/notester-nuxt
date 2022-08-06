@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 
-const Note = mongoose.model(
-    'note',
+const NoteCategory = mongoose.model(
+    'noteCategory',
     {
         title: String,
-        notes: String,
-        starred: Boolean,
+        notes: Array
     },
-    'notes'
+    'note-categories'
 );
 
-const getNotes = (req, res) => {
-    Note.find()
+const getNoteCategories = (req, res) => {
+    NoteCategory.find()
         .exec()
         .then((data) => {
             res.status(200).send(data);
@@ -22,8 +21,8 @@ const getNotes = (req, res) => {
         });
 };
 
-const getNote = (req, res) => {
-    Note.findOne({ _id: req.params.id }, (err, data) => {
+const getNoteCategory = (req, res) => {
+    NoteCategory.findOne({ _id: req.params.id }, (err, data) => {
         if (err) {
             console.log(err);
             res.status(500).send("internal server error");
@@ -32,8 +31,8 @@ const getNote = (req, res) => {
     })
 };
 
-const addNote = (req, res) => {
-    let note = new Note({ ...req.body });
+const addNoteCategory = (req, res) => {
+    let note = new NoteCategory({ ...req.body });
     note.save((err) => {
         if (err) {
             console.log(err);
@@ -44,7 +43,7 @@ const addNote = (req, res) => {
 };
 
 module.exports = {
-    addNote,
-    getNotes,
-    getNote
+    getNoteCategories,
+    getNoteCategory,
+    addNoteCategory
 };
