@@ -93,6 +93,7 @@ ul {
 
 .chosen-category {
   display: flex;
+  flex-direction: column;
   background: #fff;
   justify-content: center;
   align-items: center;
@@ -104,6 +105,12 @@ ul {
 
 .chosen-category p {
   font-weight: 300;
+}
+
+.chosen-category .note-list-add-new-note {
+    font-size: 12px;
+    font-weight: 300;
+    cursor: pointer;
 }
 
 .note-card {

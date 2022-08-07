@@ -3,6 +3,9 @@
         <div class="note-list">
             <div class="chosen-category">
                 <p>Inbox</p>
+                <div class="note-list-add-new-note">
+                    + Add new note
+                </div>
             </div>
 
             <template v-if="mainStore.selectedCategory">
